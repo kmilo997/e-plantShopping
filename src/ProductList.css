@@ -97,6 +97,10 @@ body {
     height: 200px; /* Adjust height for better consistency */
 }
 
+.product-disabled {
+    background-color: gray !important;
+}
+
 .product-button {
     background-color: #e74c3c;
     color: #fff;
