@@ -98,7 +98,23 @@ body {
 }
 
 .product-disabled {
+    cursor: not-allowed !important;
     background-color: gray !important;
+}
+
+.cursor-disabled {
+    cursor: not-allowed;
+    background-color: gray !important;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: .4s;
+    cursor: pointer;
 }
 
 .product-button {

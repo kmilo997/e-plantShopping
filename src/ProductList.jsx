@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice.jsx';
+import { current } from '@reduxjs/toolkit';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -10,7 +11,7 @@ function ProductList() {
     const [itemsOnCart, setItemsOnCart] = useState(0);
     const cart = useSelector(state => state.cart.items);
     useEffect(() => {
-        const qtItemsCart = cart.length;
+        const qtItemsCart = cart.reduce((total, currentPlant) => currentPlant.quantity + total, 0);
         setItemsOnCart(qtItemsCart);
     }, [cart]);
     const dispatch = useDispatch();
@@ -297,7 +298,14 @@ function ProductList() {
                                 <p className="product-price">{plant.cost}</p>
                                 <p>{plant.description}</p>
                                 {/*Similarly like the above plant.name show other details like description and cost*/}
-                                <button  className={`product-button ${productAdded(plant) ? 'product-disabled' : ''}`} onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                {
+                                    productAdded(plant) ? (
+                                        <button  className="product-button product-disabled" >Product added</button>
+                                    ) : (
+                                        <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    )
+                                }
+
                             </div>
                             ))}
                         </div>
